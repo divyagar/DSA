@@ -1,16 +1,25 @@
-// Program to find all articulation points in a graph
+# Articulation Points in graph
 
-// An articulation point is a vertex in an undirected connected graph iff removing it disconnects the graph.They are used to designing reliable networks.
-// They represents vulnerability in a connected network.
+* A vertex V in a graph G with C connected components is an articulation point if its removal increases the number of connected components of G.
 
-// Alogithm : The idea is to use DFS. In DFS, a vertex u is parent of another vertex v, if v is discovered by u. In DFS, a vertex u is articulation point
-// if one of the condition is true:
+## How to find articulation points?
+### Naive approach O(V * (V + E))
+```
+    For every vertex V in the graph G do
+        Remove V from G
+        if the number of connected components increases then V is an articulation point
+        Add V back to G
+```
 
-// 1. u is root and it has at lease 2 children.
-// 2. u is not root and it has a child v such that no vertex in subtree rooted with v has a back edge to one of the ancestors of u.
+### Tarjan's approach O(V + E)
+- First, we need to know that an ancestor of some node V is a node A that was discoverd before V in a DFS traversal.
+- Let's say there is a node V in some graph G that can be reached by a node U through some intermediate nodes (maybe non intermediate nodes) following some DFS traversal, if V can also be reached by A = "ancestor of U" without passing through U then, U is NOT an articulation point because it means that if we remove U from G we can still reach V from A, hence, the number of connected components will remain the same.
+- So, we can conclude that the only 2 conditions for U to be an articulation point are:
+    1. If all paths from A to V require U to be in the graph
+    1. If U is the root of the DFS traversal with at least 2 children subgraphs disconnected from each other.
 
-
-package Algos;
+## Implementation
+```java
 import java.util.*;
 public class Articulation_Points_In_Graph {
 	static List<List<Integer>> graph = new ArrayList<List<Integer> >();
@@ -80,8 +89,12 @@ public class Articulation_Points_In_Graph {
 					lowTime[element] = inTime[ele];
 				}
 			}
+			
 			i++;
 		}
 		
 	}
 }
+
+```
+
