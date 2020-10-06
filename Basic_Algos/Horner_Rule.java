@@ -1,6 +1,5 @@
-package Algos;
 import java.util.*;
-public class HornerRule {
+public class Horner_Rule {
 	public static void main(String args[]){
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
@@ -19,8 +18,5 @@ public class HornerRule {
 		}
 		
 		System.out.println(ans);
-		
-		
-		
 	}
 }
