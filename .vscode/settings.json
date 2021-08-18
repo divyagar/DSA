@@ -1,6 +1,7 @@
 {
 	"java.project.sourcePaths": [
 		"Graph",
-		"Basic_Algos/infix_prefix_postfix"
+		"Basic_Algos/infix_prefix_postfix",
+		"Basic_Algos/sorting"
 	]
 }
